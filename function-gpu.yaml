@@ -1,0 +1,53 @@
+metadata:
+  name: pth-ultralytics-yolov8-segment
+  namespace: cvat
+  annotations:
+    name: YOLO v8 Segment
+    type: detector
+    framework: pytorch
+    spec: |
+    spec: |
+      [
+        {"id": 1, "name": "Potato"},
+        {"id": 2, "name": "clod"},
+        {"id": 3, "name": "stone"}
+      ]
+
+spec:
+  description: YOLO v8 Segment via pytorch
+  runtime: 'python:3.9'
+  handler: main:handler
+  eventTimeout: 30s
+  build:
+    image: cvat.pth.ultralytics.yolov8.segment
+    baseImage: ultralytics/ultralytics:latest
+
+    directives:
+      preCopy:
+        - kind: USER
+          value: root
+        - kind: RUN
+          value: apt update && apt install --no-install-recommends -y libglib2.0-0
+        - kind: RUN
+          value: pip install supervision ultralytics
+        - kind: WORKDIR
+          value: /opt/nuclio
+
+  triggers:
+    myHttpTrigger:
+      maxWorkers: 1
+      kind: 'http'
+      workerAvailabilityTimeoutMilliseconds: 10000
+      attributes:
+        maxRequestBodySize: 33554432 # 32MB
+
+  resources:
+    limits:
+      nvidia.com/gpu: 1
+
+  platform:
+    attributes:
+      restartPolicy:
+        name: always
+        maximumRetryCount: 3
+      mountMode: volume
