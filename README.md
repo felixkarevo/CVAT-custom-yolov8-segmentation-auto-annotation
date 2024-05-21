@@ -9,7 +9,7 @@ Besides the custom YoloV8 segmentation model, you need the `function-gpu.yaml` f
 Once everything is set up, navigate to your CVAT folder from which you can deploy the Nuclio function. If you have a GPU, you can do it like this:
 
 ```bash
-./serverless/deploy_gpu.sh /home/felix/cvat/serverless/pytorch/ultralytics/custom_yolov8_GPU
+./serverless/deploy_gpu.sh ~/cvat/serverless/pytorch/ultralytics/custom_yolov8_GPU
 ```
 
 I believe the scripts should also work if you don't have a GPU.
