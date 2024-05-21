@@ -13,3 +13,5 @@ Once everything is set up, navigate to your CVAT folder from which you can deplo
 ```
 
 I believe the scripts should also work if you don't have a GPU.
+
+I use my custom yolov8 segemtantion model to (bulk) auto annotate all images. However, I find that it is sometimes not accurate enough. Therefore, as a second step I am using segment anything to correct lables or make them more fine-grained. I find this two step approach to generate very accurate labels. 
