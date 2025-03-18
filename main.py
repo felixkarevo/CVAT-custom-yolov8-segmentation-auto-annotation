@@ -2,6 +2,7 @@ import json
 import base64
 from PIL import Image
 import io
+import os
 
 import numpy as np
 from ultralytics import YOLO
@@ -19,7 +20,14 @@ def to_cvat_mask(box: list, mask):
 def init_context(context):
     context.logger.info("Init context...  0%")
 
-    model_path = "your-custom-yolov8-seg-model.pt"
+    # Check for custom model or use pretrained model
+    # If a custom model file is available, use it, otherwise use pretrained YOLOv8s-seg
+    model_path = "your-custom-yolov8-model.pt"
+    if os.path.exists(model_path):
+        context.logger.info(f"Loading custom model from {model_path}")
+    else:
+        model_path = "yolov8s-seg.pt"  # Use pretrained model from Ultralytics
+        context.logger.info(f"Custom model not found, using pretrained {model_path}")
 
     model = YOLO(model_path, task="segment")
 
