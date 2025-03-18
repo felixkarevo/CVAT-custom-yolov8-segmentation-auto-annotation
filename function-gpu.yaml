@@ -6,7 +6,6 @@ metadata:
     type: detector
     framework: pytorch
     spec: |
-    spec: |
       [
         {"id": 1, "name": "Potato"},
         {"id": 2, "name": "clod"},
