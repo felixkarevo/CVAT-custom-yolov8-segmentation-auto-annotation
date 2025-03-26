@@ -7,9 +7,9 @@ metadata:
     framework: pytorch
     spec: |
       [
-        {"id": 1, "name": "Potato"},
-        {"id": 2, "name": "clod"},
-        {"id": 3, "name": "stone"}
+        {"id": 1, "name": "<XYZ>"},
+        {"id": 2, "name": "<XYZ>"},
+        {"id": 3, "name": "<XYZ>"}
       ]
 
 spec:
